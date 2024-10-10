@@ -780,4 +780,12 @@ public class MeBridgePeripheral extends BasePeripheral<BlockEntityPeripheralOwne
         }
         return MethodResult.of(map);
     }
+
+    @LuaFunction(mainThread = true)
+    public final MethodResult getUsedChannels() {
+        if (!isAvailable())
+            return notConnected();
+
+        return MethodResult.of(node.getGrid().getPathingService().getUsedChannels());
+    }
 }
